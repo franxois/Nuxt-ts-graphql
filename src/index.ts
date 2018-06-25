@@ -6,13 +6,12 @@ import { Nuxt, Builder } from 'nuxt';
 const app = express();
 const isProd = (process.env.NODE_ENV === 'production')
 
-
 const server = new ApolloServer({
     typeDefs,
     resolvers,
 });
 
-server.applyMiddleware({ app }); // app is from an existing express app
+server.applyMiddleware({ app });
 
 // We instantiate nuxt.js with the options
 import config from './nuxt.config'
@@ -30,7 +29,6 @@ if (config.dev) {
             process.exit(1)
         })
 }
-
 
 app.listen({ port: 4000 }, () =>
     console.log(`🚀 Server ready at http://localhost:4000${server.graphqlPath}`)
